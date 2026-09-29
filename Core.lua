@@ -30,12 +30,14 @@ function frame:SetupHooks()
         if isUpdatingMinimap or not WowTR_Options.ZoneEnabled or not text or text == "" then return end
         
         local translated = ZoneTranslator_ZoneData[text]
-        if translated then
+        
+        -- Eğer Türkçe karşılığı var ve boş değilse çeviriyi uygula
+        if translated and translated ~= "" then
             isUpdatingMinimap = true
             self:SetText(translated)
             isUpdatingMinimap = false
         else
-            -- Veritabanında yoksa yeni liste oluşturup içini boş bırakarak kaydet
+            -- Veritabanında yoksa veya değeri boşsa keşfedilenlere kaydet (Value boşsa key'in kendisi korunur)
             if not WowTR_DiscoveredZones[text] then
                 WowTR_DiscoveredZones[text] = ""
                 if WowTR_Options.Debug then
@@ -54,13 +56,15 @@ function frame:SetupHooks()
                 local name = UnitName(unit)
                 if name then
                     local translated = MobNpcTranslator_Data[name]
-                    if translated then
+                    
+                    -- Eğer Türkçe karşılığı var ve boş değilse çeviriyi yaz
+                    if translated and translated ~= "" then
                         local line1 = _G[self:GetName().."TextLeft1"]
                         if line1 then
                             line1:SetText(translated)
                         end
                     else
-                        -- Veritabanında yoksa keşfedilenlere ekle
+                        -- Veritabanında yoksa veya değeri boşsa keşfedilenlere ekle
                         if not WowTR_DiscoveredMobs[name] then
                             WowTR_DiscoveredMobs[name] = ""
                             if WowTR_Options.Debug then
@@ -80,7 +84,9 @@ function frame:SetupHooks()
                 local name = UnitName("target")
                 if name then
                     local translated = MobNpcTranslator_Data[name]
-                    if translated then
+                    
+                    -- Sadece çeviri doluysa hedef adını değiştir, boşsa orijinal ad (key) kalsın
+                    if translated and translated ~= "" then
                         -- Güncel Retail (Dragonflight / The War Within vb.) arayüz yapısı
                         if self.TargetFrameContent and self.TargetFrameContent.TargetFrameContentMain and self.TargetFrameContent.TargetFrameContentMain.Name then
                             self.TargetFrameContent.TargetFrameContentMain.Name:SetText(translated)
