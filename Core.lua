@@ -8,7 +8,7 @@ local defaultOptions = {
     MobEnabled = true,
     ZoneEnabled = true,
     Debug = false,
-    MinimapPos = 225 -- Minimap ikonunun varsayılan açısı
+    MinimapPos = 225
 }
 
 local frame = CreateFrame("Frame")
@@ -54,8 +54,8 @@ function frame:SetupHooks()
         if not WowTR_Options.MobEnabled then return end
         if self == GameTooltip then
             local _, unit = self:GetUnit()
-            -- Sadece ünite varsa VE bir oyuncu (Player) değilse işlem yap
-            if unit and not UnitIsPlayer(unit) then
+            -- Sadece ünite varsa VE bir Oyuncu (Player) veya Oyuncu Pet'i değilse işlem yap
+            if unit and not UnitIsPlayer(unit) and not UnitPlayerControlled(unit) then
                 local name = UnitName(unit)
                 if name then
                     local translated = MobNpcTranslator_Data and MobNpcTranslator_Data[name]
@@ -82,15 +82,18 @@ function frame:SetupHooks()
     TargetFrame:HookScript("OnEvent", function(self, event, ...)
         if event == "PLAYER_TARGET_CHANGED" or event == "UNIT_NAME_UPDATE" or event == "UNIT_FACTION" then
             if WowTR_Options.MobEnabled then
-                local name = UnitName("target")
-                if name then
-                    local translated = MobNpcTranslator_Data and MobNpcTranslator_Data[name]
-                    
-                    if translated and translated ~= "" then
-                        if self.TargetFrameContent and self.TargetFrameContent.TargetFrameContentMain and self.TargetFrameContent.TargetFrameContentMain.Name then
-                            self.TargetFrameContent.TargetFrameContentMain.Name:SetText(translated)
-                        elseif self.name then
-                            self.name:SetText(translated)
+                -- Hedef bir oyuncu veya oyuncu pet'i ise işlem yapma
+                if not UnitIsPlayer("target") and not UnitPlayerControlled("target") then
+                    local name = UnitName("target")
+                    if name then
+                        local translated = MobNpcTranslator_Data and MobNpcTranslator_Data[name]
+                        
+                        if translated and translated ~= "" then
+                            if self.TargetFrameContent and self.TargetFrameContent.TargetFrameContentMain and self.TargetFrameContent.TargetFrameContentMain.Name then
+                                self.TargetFrameContent.TargetFrameContentMain.Name:SetText(translated)
+                            elseif self.name then
+                                self.name:SetText(translated)
+                            end
                         end
                     end
                 end
@@ -109,7 +112,7 @@ function frame:InitializeOptionsPanel()
     optionsFrame:RegisterForDrag("LeftButton")
     optionsFrame:SetScript("OnDragStart", optionsFrame.StartMoving)
     optionsFrame:SetScript("OnDragStop", optionsFrame.StopMovingOrSizing)
-    optionsFrame:Hide() -- Varsayılan olarak kapalı
+    optionsFrame:Hide()
 
     optionsFrame.title = optionsFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     optionsFrame.title:SetPoint("LEFT", optionsFrame.TitleBg, "LEFT", 6, 1)
@@ -148,12 +151,9 @@ function frame:InitializeOptionsPanel()
         WowTR_Options.Debug = self:GetChecked()
     end)
 
-    -- ESC İle Kapanma Desteği
     table.insert(UISpecialFrames, "WowTR_OptionsFrame")
-    
     self.optionsFrame = optionsFrame
 end
-
 
 -- Minimap İkonu
 function frame:CreateMinimapButton()
@@ -162,20 +162,17 @@ function frame:CreateMinimapButton()
     btn:SetSize(31, 31)
     btn:SetFrameLevel(8)
 
-    -- İkon Görseli
     local icon = btn:CreateTexture(nil, "BACKGROUND")
     icon:SetTexture("Interface\\Icons\\UI_Chat")
     icon:SetSize(20, 20)
     icon:SetPoint("CENTER")
     btn.icon = icon
 
-    -- Çerçeve Çemberi
     local border = btn:CreateTexture(nil, "OVERLAY")
     border:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
     border:SetSize(53, 53)
     border:SetPoint("TOPLEFT")
 
-    -- Minimap Dış Çeper Pozisyon Hesabı (Radius = 102 dış çeper için uygundur)
     local radius = 102
     local function UpdatePosition()
         local angle = math.rad(WowTR_Options.MinimapPos or 225)
@@ -186,7 +183,6 @@ function frame:CreateMinimapButton()
 
     local isDragging = false
 
-    -- Sol Tık ile Sürükleme ve Tıklama Yönetimi
     btn:RegisterForDrag("LeftButton")
     btn:RegisterForClicks("LeftButtonUp")
 
@@ -205,11 +201,9 @@ function frame:CreateMinimapButton()
 
     btn:SetScript("OnDragStop", function(self)
         self:SetScript("OnUpdate", nil)
-        -- Sürükleme bittiğinde tıklama tetiklenmesin diye ufak bir gecikme
         C_Timer.After(0.1, function() isDragging = false end)
     end)
 
-    -- Tıklama Olayı (Sol Tık = Ayarları Aç/Kapat, Sürükleniyorsa Açmaz)
     btn:SetScript("OnClick", function(self, button)
         if button == "LeftButton" and not isDragging then
             if frame.optionsFrame:IsShown() then
@@ -220,7 +214,6 @@ function frame:CreateMinimapButton()
         end
     end)
 
-    -- İkon Üzerine Gelince Tooltip
     btn:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_LEFT")
         GameTooltip:AddLine("WowTR-Mob-Npc-Zone " .. addonVersion, 1, 0.82, 0)
