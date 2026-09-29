@@ -1,6 +1,9 @@
 ZoneTranslator_ZoneData = {
-    
-["ab"] = "",                                             
+["The Den"] = "İn",
+["Red Cloud Mesa"] = "Kızıl Bulut Platosu",
+["Valley of Trials"] = "Kahramanlar Vadisi",
+--123456789
+
 ["Adele Fielder"] = "",                                  
 ["Aerie Peak"] = "Kartal Yuvası Tepesi",                                     
 ["Ahn'Qiraj Temple - Entering"] = "",                    
