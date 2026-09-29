@@ -2,6 +2,13 @@ ZoneTranslator_ZoneData = {
 ["The Den"] = "İn",
 ["Red Cloud Mesa"] = "Kızıl Bulut Platosu",
 ["Valley of Trials"] = "Kahramanlar Vadisi",
+["Saldean's Farm"] = "Saldean Çiftliği",
+["Thendal Village"] = "Thendal Köyü",
+["Zephras Isle"] = "Zephras Adası",
+["Main Hall"] = "Ana Salon",
+["Sentinel Tower"] = "Nöbetçi Kulesi",
+["Northshire Vineyards"] = "Northshire Üzüm Bağları",
+["Thendal Grove"] = "Thendal Korusu",
 --123456789
 
 ["Adele Fielder"] = "",                                  
