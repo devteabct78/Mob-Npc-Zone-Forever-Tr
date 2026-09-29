@@ -40,11 +40,10 @@ function frame:SetupHooks()
             self:SetText(translated)
             isUpdatingMinimap = false
         else
-            if not WowTR_DiscoveredZones[text] then
+            -- Veritabanında yoksa ve SADECE DEBUG MODU AÇIKSA kaydedilir
+            if WowTR_Options.Debug and not WowTR_DiscoveredZones[text] then
                 WowTR_DiscoveredZones[text] = ""
-                if WowTR_Options.Debug then
-                    print("|cFF00FFFF[WowTR-Zone]|r Yeni bölge kaydedildi: " .. text)
-                end
+                print("|cFF00FFFF[WowTR-Zone]|r Yeni bölge kaydedildi: " .. text)
             end
         end
     end)
@@ -66,11 +65,10 @@ function frame:SetupHooks()
                             line1:SetText(translated)
                         end
                     else
-                        if not WowTR_DiscoveredMobs[name] then
+                        -- Veritabanında yoksa ve SADECE DEBUG MODU AÇIKSA kaydedilir
+                        if WowTR_Options.Debug and not WowTR_DiscoveredMobs[name] then
                             WowTR_DiscoveredMobs[name] = ""
-                            if WowTR_Options.Debug then
-                                print("|cFFFFFF00[WowTR-Mob]|r Yeni Mob/NPC kaydedildi: " .. name)
-                            end
+                            print("|cFFFFFF00[WowTR-Mob]|r Yeni Mob/NPC kaydedildi: " .. name)
                         end
                     end
                 end
@@ -82,7 +80,6 @@ function frame:SetupHooks()
     TargetFrame:HookScript("OnEvent", function(self, event, ...)
         if event == "PLAYER_TARGET_CHANGED" or event == "UNIT_NAME_UPDATE" or event == "UNIT_FACTION" then
             if WowTR_Options.MobEnabled then
-                -- Hedef bir oyuncu veya oyuncu pet'i ise işlem yapma
                 if not UnitIsPlayer("target") and not UnitPlayerControlled("target") then
                     local name = UnitName("target")
                     if name then
