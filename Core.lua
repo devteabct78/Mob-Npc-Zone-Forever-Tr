@@ -54,7 +54,8 @@ function frame:SetupHooks()
         if not WowTR_Options.MobEnabled then return end
         if self == GameTooltip then
             local _, unit = self:GetUnit()
-            if unit then
+            -- Sadece ünite varsa VE bir oyuncu (Player) değilse işlem yap
+            if unit and not UnitIsPlayer(unit) then
                 local name = UnitName(unit)
                 if name then
                     local translated = MobNpcTranslator_Data and MobNpcTranslator_Data[name]
