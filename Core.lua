@@ -28,32 +28,68 @@ frame:SetScript("OnEvent", function(self, event, arg1)
 end)
 
 function frame:SetupHooks()
-    -- 1. Minimap Bölge İsmi Hook
-    local isUpdatingMinimap = false
-    hooksecurefunc(MinimapZoneText, "SetText", function(self, text)
-        if isUpdatingMinimap or not WowTR_Options.ZoneEnabled or not text or text == "" then return end
+    -- Ortak Bölge Çevirisi Yardımcı Fonksiyonu
+    local function TranslateZoneText(text)
+        if not WowTR_Options.ZoneEnabled or not text or text == "" then return nil end
         
         local translated = ZoneTranslator_ZoneData and ZoneTranslator_ZoneData[text]
-        
         if translated and translated ~= "" then
-            isUpdatingMinimap = true
-            self:SetText(translated)
-            isUpdatingMinimap = false
+            return translated
         else
             -- Veritabanında yoksa ve SADECE DEBUG MODU AÇIKSA kaydedilir
             if WowTR_Options.Debug and not WowTR_DiscoveredZones[text] then
                 WowTR_DiscoveredZones[text] = ""
                 print("|cFF00FFFF[WowTR-Zone]|r Yeni bölge kaydedildi: " .. text)
             end
+            return nil
+        end
+    end
+
+    -- 1. Minimap Bölge İsmi Hook
+    local isUpdatingMinimap = false
+    hooksecurefunc(MinimapZoneText, "SetText", function(self, text)
+        if isUpdatingMinimap then return end
+        local translated = TranslateZoneText(text)
+        if translated then
+            isUpdatingMinimap = true
+            self:SetText(translated)
+            isUpdatingMinimap = false
         end
     end)
+
+    -- 1.1 Ekran Ortasında Beliren Büyük Bölge Yazısı (Zone Text Banner) Hook
+    local isUpdatingZoneBanner = false
+    if ZoneTextString then
+        hooksecurefunc(ZoneTextString, "SetText", function(self, text)
+            if isUpdatingZoneBanner or not text or text == "" then return end
+            local translated = TranslateZoneText(text)
+            if translated then
+                isUpdatingZoneBanner = true
+                self:SetText(translated)
+                isUpdatingZoneBanner = false
+            end
+        end)
+    end
+
+    -- 1.2 Ekran Ortasında Beliren Alt Bölge Yazısı (SubZone Text Banner) Hook
+    local isUpdatingSubZoneBanner = false
+    if SubZoneTextString then
+        hooksecurefunc(SubZoneTextString, "SetText", function(self, text)
+            if isUpdatingSubZoneBanner or not text or text == "" then return end
+            local translated = TranslateZoneText(text)
+            if translated then
+                isUpdatingSubZoneBanner = true
+                self:SetText(translated)
+                isUpdatingSubZoneBanner = false
+            end
+        end)
+    end
 
     -- 2. Tooltip (Mob/NPC) Hook
     TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Unit, function(self)
         if not WowTR_Options.MobEnabled then return end
         if self == GameTooltip then
             local _, unit = self:GetUnit()
-            -- Sadece ünite varsa VE bir Oyuncu (Player) veya Oyuncu Pet'i değilse işlem yap
             if unit and not UnitIsPlayer(unit) and not UnitPlayerControlled(unit) then
                 local name = UnitName(unit)
                 if name then
@@ -65,7 +101,6 @@ function frame:SetupHooks()
                             line1:SetText(translated)
                         end
                     else
-                        -- Veritabanında yoksa ve SADECE DEBUG MODU AÇIKSA kaydedilir
                         if WowTR_Options.Debug and not WowTR_DiscoveredMobs[name] then
                             WowTR_DiscoveredMobs[name] = ""
                             print("|cFFFFFF00[WowTR-Mob]|r Yeni Mob/NPC kaydedildi: " .. name)
