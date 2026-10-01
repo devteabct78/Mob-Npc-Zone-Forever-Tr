@@ -624,5 +624,6 @@ ZoneTranslator_ZoneData = {
     ["Aldrassil"] = "Aldrassil",
     ["The Darkened Bank"] = "Karanlık Kıyı",
     ["Forest's Edge"] = "Orman Kıyısı",
+    ["The Jansen Stead"] = "Jansen Arazisi",
     --123456789
 }
