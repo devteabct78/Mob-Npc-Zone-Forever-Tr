@@ -8497,7 +8497,7 @@ MobNpcTranslator_Data = {
     ["Wesley"] = "Wesley",
     ["West Frostwolf Marshal"] = "Batı Buzkurdu Mareşali",
     ["West Frostwolf Warmaster"] = "Batı Buzkurdu Savaşustası",
-    ["Westfall Woodworker"] = "Batıdüşü Ahşap İşçisi",
+    ["Westfall Woodworker"] = "Batıyaka Ahşap İşçisi",
     ["Wetlands Crocolisk"] = "Sulakalan Timsahı",
     ["Wharfmaster Dizzywig"] = "Liman Reisi Dizzywig",
     ["Wharfmaster Lozgil"] = "Liman Reisi Lozgil",
@@ -9625,6 +9625,7 @@ MobNpcTranslator_Data = {
 ["Reginald Berry"] = "Reginald Berry",
 ["Rezrelek"] = "Rezrelek",
 ["Rhonin"] = "Rhonin",
+["Ozwin Ironsprocket"] = "Ozwin Demirdişli",
 
 
 

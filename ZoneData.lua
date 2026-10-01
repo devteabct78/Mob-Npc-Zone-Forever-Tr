@@ -625,5 +625,8 @@ ZoneTranslator_ZoneData = {
     ["The Darkened Bank"] = "Karanlık Kıyı",
     ["Forest's Edge"] = "Orman Kıyısı",
     ["The Jansen Stead"] = "Jansen Arazisi",
+    ["Gold Coast Quarry"] = "Altın Sahil Taş Ocağı",
+    ["Stendel's Pond"] = "Stendel Göleti",
+    ["Alexston Farmstead"] = "Alexston Çiftlik Yeri",
     --123456789
 }
