@@ -1,5 +1,5 @@
-## Interface: 116001
-## Title: WowTR Mob-Npc-Zone
+## Interface: 16001
+## Title: WowTR Mob-Npc-Zone-Türkçe Çeviri
 ## Notes: Mob, NPC ve Bolge isimlerini Turkceye cevirir.
 ## Author: Fuat
 ## Version: @project-version@
