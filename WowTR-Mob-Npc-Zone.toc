@@ -2,7 +2,8 @@
 ## Title: WowTR Mob-Npc-Zone
 ## Notes: Mob, NPC ve Bolge isimlerini Turkceye cevirir.
 ## Author: Fuat
-## Version: 1.2
+## Version: @project-version@
+## X-Curse-Project-ID: 1717849
 ## SavedVariables: WowTR_Options, WowTR_DiscoveredMobs, WowTR_DiscoveredZones
 
 MobNpcData.lua

@@ -1,0 +1,22 @@
+name: Package and Release AddOn
+
+on:
+  push:
+    tags:
+      - '*' # Yeni bir tag oluşturulduğunda tetiklenir
+  workflow_dispatch: # Actions sekmesinden manuel tetikleme butonu ekler
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Versiyon geçmişi için tüm logların çekilmesi önemlidir
+
+      - name: Build and Deploy to CurseForge
+        uses: BigWigsMods/packager@v2
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
