@@ -628,5 +628,13 @@ ZoneTranslator_ZoneData = {
     ["Gold Coast Quarry"] = "Altın Sahil Taş Ocağı",
     ["Stendel's Pond"] = "Stendel Göleti",
     ["Alexston Farmstead"] = "Alexston Çiftlik Yeri",
+    ["Eastvale Logging Camp"] = "Doğuvadisi Oduncu Kampı",
+    ["Lakeshire Inn"] = "Gölpınarı Hanı",
+    ["Jangolode Mine"] = "Jangolode Madeni",
+    ["Lake Everstill"] = "Durgun Göl",
+    ["The Dead Acre"] = "Ölü Arazi",
+    ["Tower of Azora"] = "Azora Kulesi",
+    ["Ridgepoint Tower"] = "Sırttepe Kulesi",
+    ["Three Corners"] = "Üç Yolağzı",
     --123456789
 }
