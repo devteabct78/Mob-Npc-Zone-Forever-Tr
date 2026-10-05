@@ -635,6 +635,6 @@ ZoneTranslator_ZoneData = {
     ["The Dead Acre"] = "Ölü Arazi",
     ["Tower of Azora"] = "Azora Kulesi",
     ["Ridgepoint Tower"] = "Sırttepe Kulesi",
-    ["Three Corners"] = "Üç Yolağzı",
+    ["Three Corners"] = "Üçyol Ağzı",
     --123456789
 }
