@@ -636,5 +636,9 @@ ZoneTranslator_ZoneData = {
     ["Tower of Azora"] = "Azora Kulesi",
     ["Ridgepoint Tower"] = "Sırtnoktası Kulesi",
     ["Three Corners"] = "Üç Yol",
+    ["Night Web's Hollow"] = "Geceağı Oyuğu",
+    ["Shadow Grave"] = "Gölge Mezarı",
+    ["Stillwater Pond"] = "Durgunsu Göleti",
+    ["Cold Hearth Manor"] = "Soğukocak Malikanesi",
     --123456789
 }

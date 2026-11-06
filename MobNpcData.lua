@@ -9649,6 +9649,12 @@ MobNpcTranslator_Data = {
 ["Basket of Textile Supplies"] = "Tekstil Malzemeleri Sepeti",
 ["Reason"] = "Akıl",
 ["Ormin Pelford"] = "Ormin Pelford",
+["Shen'dorei Windwell"] = "Shen'dorei Rüzgarkuyusu",
+["Florence Nightshade"] = "Florence Gecegölgesi",
+["Forsaken Adventurer"] = "Terk Edilmiş Maceracı",
+["Clarence Gillian"] = "Clarence Gillian",
+["Deathguard Lizabetha"] = "Ölüm Muhafızı Lizabetha",
+["Webbed Forsaken"] = "Ağlanmış Terk Edilmiş",
 
 
 
