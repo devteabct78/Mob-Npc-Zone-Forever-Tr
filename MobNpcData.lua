@@ -9655,7 +9655,22 @@ MobNpcTranslator_Data = {
 ["Clarence Gillian"] = "Clarence Gillian",
 ["Deathguard Lizabetha"] = "Ölüm Muhafızı Lizabetha",
 ["Webbed Forsaken"] = "Ağlanmış Terk Edilmiş",
-
+["Shari Stilwell"] = "Shari Durgunkuyu",
+["Dark Enforcer"] = "Karanlık İnfazcı",
+["Angela Ward"] = "Angela Koğuş",
+["Aggor the Young"] = "Genç Aggor",
+["Dark Neophyte"] = "Karanlık Mühtedi",
+["Angie Cilas"] = "Angie Cilas",
+["Vigilant Deathguard"] = "Uyanık Ölüm Muhafızı",
+["William Pickman"] = "William Kazmacı",
+["Ochre Skeletal Warhorse"] = "Zafran İskelet Savaş Atı",
+["Deathguard Kristof"] = "Ölüm Muhafızı Kristof",
+["Black Skeletal Horse"] = "Siyah İskelet At",
+["Hadric Harlson"] = "Hadric Harlson",
+["Eleanor Shackleton"] = "Eleanor Prangakent",
+["Unknown"] = "Bilinmeyen",
+["Bareth Dawnstone"] = "Bareth Şafaktaşı",
+["Decrepit Harvester"] = "Çökmüş Oraççı",
 
 
 
