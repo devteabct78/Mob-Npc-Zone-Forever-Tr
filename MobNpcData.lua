@@ -9709,6 +9709,11 @@ MobNpcTranslator_Data = {
 ["Jorin Croge"] = "Jorin Croge",
 ["Angus Hammerhand"] = "Angus Çekiçel",
 ["Ander Solliden"] = "Ander Solliden",
+["Trevan Rol"] = "Trevan Rol",
+["Calder Gray"] = "Calder Gri",
+["Shadowvale Lurcher"] = "Gölgevadi Yalpalayanı",
+["Vile Fin Attacker"] = "Aşağılık Yüzgeç Saldırganı",
+["Shadowvale Mystic"] = "Gölgevadi Mistiği",
 
 
 

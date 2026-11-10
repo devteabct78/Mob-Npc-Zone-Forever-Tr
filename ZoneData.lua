@@ -673,5 +673,11 @@ ZoneTranslator_ZoneData = {
     ["Scarlet Watch Post"] = "Al Kızıl Gözetleme Noktası",
     ["The Shining Strand"] = "Parlayan Kumsal",
     ["Royal Quarter"] = "Kraliyet Mahallesi",
+    ["The Skittering Dark"] = "Kıpırtılı Karanlık",
+    ["Shadowvale"] = "Gölgevadi",
+    ["The Dead Field"] = "Ölü Tarla",
+    ["The Decrepit Ferry"] = "Harabimsi İskele",
+    ["Deep Elem Mine"] = "Derin Elem Madeni",
+    ["North Tide's Hollow"] = "Kuzey Gelgiti Koyuğu",
     --123456789
 }
